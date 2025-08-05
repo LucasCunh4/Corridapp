@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Meu App de Corrida</title> 
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+</head>
+
+<body class="loading">
+
+
+    <header>
+        <button id="botao-menu" class="botao-menu">
+            <span></span><span></span><span></span>
+        </button>
+        <h1>Rankings</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li> 
+            <li><a href="plano.html">Plano de Treinos</a></li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <main>
+        <section class="card-recordes">
+            <h2>🏆 Meus Recordes (PRs)</h2>
+            <div id="lista-recordes" class="grid-recordes">
+                <div class="card-recorde">
+                    <h4>Maior Distância</h4>
+                    <p>-- km</p>
+                    <span>--/--/----</span>
+                </div>
+                <div class="card-recorde">
+                    <h4>Maior Duração</h4>
+                    <p>-- min</p>
+                    <span>--/--/----</span>
+                </div>
+                <div class="card-recorde">
+                    <h4>Melhor Pace</h4>
+                    <p>--'--" /km</p>
+                    <span>--/--/----</span>
+                </div>
+                </div>
+        </section>
+        <section class="card-ranking">
+            <h2>🚀 Top 5 - Maiores Distâncias</h2>
+            <ol id="ranking-distancia"></ol>
+        </section>
+
+        <section class="card-ranking">
+            <h2>⏱️ Top 5 - Maiores Tempos</h2>
+            <ol id="ranking-tempo"></ol>
+        </section>
+
+        <section class="card-ranking">
+            <h2>⚡ Top 5 - Melhores Paces</h2>
+            <ol id="ranking-pace"></ol>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Treino</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+   </head>
+
+<body class="loading">
+
+    <header>
+        <button id="botao-menu" class="botao-menu">
+            <span></span><span></span><span></span>
+        </button>
+        <h1>Registrar Treino</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="plano.html">Plano de Treinos</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <main>
+        <form id="form-registro">
+            <label for="tipo-treino">Tipo de Treino:</label>
+            <select id="tipo-treino" name="tipo-treino">
+                <option value="Corrida">Corrida</option>
+                <option value="Caminhada">Caminhada</option>
+                <option value="Corrida + Caminhada">Corrida + Caminhada</option>
+                <option value="Intervalado">Intervalado</option>
+            </select>
+            
+            <label for="equipamento-usado">Equipamento Usado:</label>
+            <select id="equipamento-usado">
+                <option value="nenhum">Nenhum / Não informado</option>
+            </select>
+
+            <label for="distancia">Distância (km):</label>
+            <input type="number" id="distancia" name="distancia" step="0.01" placeholder="Ex: 5.25" inputmode="decimal">
+
+            <label for="tempo-total-min">Tempo Total:</label>
+            <div class="grupo-tempo">
+                <input type="number" id="tempo-total-min" placeholder="Min" min="0" inputmode="numeric">
+                <span>min</span>
+                <input type="number" id="tempo-total-seg" placeholder="Seg" min="0" max="59" inputmode="numeric">
+                <span>seg</span>
+            </div>
+
+            <label for="motivo-parada">Motivo da Parada (opcional):</label>
+            <select id="motivo-parada" name="motivo-parada">
+                <option value="">Nenhum</option>
+                <option value="folego">Fôlego</option>
+                <option value="dor-perna">Dor na perna</option>
+                <option value="dor-barriga">Dor na barriga</option>
+                <option value="outro">Outro</option>
+            </select>
+            
+            <div id="campo-outro-motivo" class="campo-outro-motivo">
+                <label for="outro-motivo-texto">Especifique o motivo:</label>
+                <textarea id="outro-motivo-texto" name="outro-motivo-texto"></textarea>
+            </div>
+
+            <label for="cansaco">Nível de Cansaço: <span id="valor-cansaco">5</span>/10</label>
+            <input type="range" id="cansaco" name="cansaco" min="0" max="10" value="5">
+
+            <div class="pace-display">
+                <p>Pace Médio: <strong>--'--" /km</strong></p>
+            </div>
+
+                        <button type="submit" id="botao-salvar-treino">Salvar Treino</button>
+        </form>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

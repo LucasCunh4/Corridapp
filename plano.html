@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treinos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+
+<body class="loading">
+    <div id="loader-wrapper"><div class="loader-spinner"></div></div>
+
+    <header>
+        <button id="botao-menu" class="botao-menu" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+        <h1>Plano de Treinos</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li>
+            <li><a href="plano.html">Plano de Treinos</a></li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <main>
+        <section id="calendario-mensal">
+            <div class="calendario-header">
+                <button id="mes-anterior">&lt;</button>
+                <h2 id="mes-ano-display">Agosto 2025</h2>
+                <button id="mes-seguinte">&gt;</button>
+            </div>
+            <div class="calendario-dias-semana">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div id="grid-mensal" class="grid-mensal">
+                </div>
+        </section>
+    </main>
+
+    <div id="modal-plano" class="modal-overlay" style="display: none;">
+        <div class="modal-content"> <h3 id="modal-plano-titulo">Agendar Treino</h3>
+            <form id="form-plano">
+                <input type="hidden" id="plano-data">
+                
+                <label for="plano-tipo">Tipo de Treino:</label>
+                <select id="plano-tipo">
+                    <option value="Corrida">Corrida</option>
+                    <option value="Caminhada">Caminhada</option>
+                    <option value="Intervalado">Intervalado</option>
+                    <option value="Descanso">Descanso</option>
+                </select>
+
+                <label for="plano-descricao">Descrição / Meta:</label>
+                <input type="text" id="plano-descricao" placeholder="Ex: 5km leve ou 8x400m">
+
+                <div class="modal-buttons">
+                    <button type="button" id="modal-plano-excluir" class="botao-excluir-modal">Excluir</button>
+                    <button type="button" id="modal-plano-cancelar" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-confirm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="global-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <p id="global-modal-text"></p>
+            <div id="global-modal-confirm-buttons" class="modal-buttons" style="display: none;">
+                <button id="global-modal-btn-confirm" class="btn-confirm">Confirmar</button>
+                <button id="global-modal-btn-cancel" class="btn-cancel">Cancelar</button>
+            </div>
+            <div id="global-modal-alert-buttons" class="modal-buttons" style="display: none;">
+                <button id="global-modal-btn-ok" class="btn-confirm">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

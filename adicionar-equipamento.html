@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0F3460">
+
+    <title>Adicionar equipamento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body class="loading">
+
+    <header>
+        <a href="equipamentos.html" class="link-voltar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+    </svg>
+    Voltar
+</a>
+
+        <h1>Adicionar tênis</h1>
+    </header>
+
+    <main>
+        <section class="card-desafio-novo">
+            <form id="form-novo-equipamento">
+                <label for="equipamento-nome">Nome / Modelo:</label>
+                <input type="text" id="equipamento-nome" placeholder="Ex: Olympikus Corre 4" required>
+
+                <label for="equipamento-limite">Distância limite (km, opcional):</label>
+                <input type="number" id="equipamento-limite"placeholder="ex:800" inputmode="numeric">
+
+                <button type="submit">Adicionar tênis</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,660 @@
+/* ---- CONFIGURAÇÕES GERAIS E PALETA DE CORES ---- */
+:root {
+    --cor-fundo: #1A1A2E;
+    --cor-fundo-card: #16213E;
+    --cor-primaria: #0F3460;
+    --cor-destaque: #5372F0;
+    --cor-texto: #E9E9E9;
+    --cor-texto-secundario: #a9a9b3;
+    /* NOVAS CORES (AJUSTADAS) PARA O TREINADOR */
+    --cor-corrida: #69CD;      /* Roxo mais puro */
+    --cor-caminhada: #1E90FF;    /* Azul claro e vibrante */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding: 20px;
+    padding-top: 80px;
+    transition: background-color 0.5s;
+}
+
+/* Cores de fundo do treinador */
+body.fase-corrida { background-color: var(--cor-corrida); }
+body.fase-caminhada { background-color: var(--cor-caminhada); }
+
+
+/* ---- LAYOUT PRINCIPAL E HEADER ---- */
+header {
+    background-color: var(--cor-primaria);
+    padding: 15px 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+h1 { margin: 0; font-size: 1.5em; }
+main { display: flex; flex-direction: column; gap: 20px; }
+
+/* ---- ESTILO DOS CARDS DA TELA INICIAL ---- */
+section[class^="card-"] {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+section[class^="card-"] h2 { margin-top: 0; color: var(--cor-destaque); font-size: 1.2em; }
+.km-total-display { font-size: 3em; font-weight: bold; text-align: center; color: var(--cor-destaque); margin: 10px 0; }
+.botoes-periodo { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.botoes-periodo button { background-color: var(--cor-primaria); color: var(--cor-texto); border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em; }
+.botoes-periodo button.ativo { background-color: var(--cor-destaque); font-weight: bold; }
+
+/* Estilo do card "Treino do Dia" */
+.card-treino-hoje {
+    background: linear-gradient(135deg, var(--cor-destaque), #8a2be2 100%);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(83, 114, 240, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-treino-hoje.concluido {
+    background: linear-gradient(135deg, #28a745 0%, #274c3a 100%);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+.card-treino-hoje.concluido::before {
+    content: '✓';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    font-size: 100px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.card-treino-hoje h3 {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    font-weight: normal;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+.card-treino-hoje p {
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.botao-ir-plano {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+.botao-ir-plano:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---- BOTÃO FLUTUANTE (FAB) GENÉRICO ---- */
+.fab {
+    background-color: var(--cor-destaque);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-decoration: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    box-shadow: 0 4px 12px rgba(83, 114, 240, 0.5);
+    z-index: 900;
+}
+
+/* ---- ESTILO DOS FORMULÁRIOS ---- */
+form { display: flex; flex-direction: column; gap: 15px; }
+form label { color: var(--cor-texto-secundario); font-size: 0.9em; }
+form input, form select, form textarea, form button {
+    width: 100%; padding: 12px; border-radius: 8px;
+    border: 1px solid var(--cor-primaria);
+    background-color: var(--cor-fundo); color: var(--cor-texto);
+    font-size: 1em; box-sizing: border-box;
+}
+form button { background-color: var(--cor-destaque); border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
+.pace-display { text-align: center; padding: 15px; background-color: var(--cor-fundo); border-radius: 8px; border: 1px dashed var(--cor-destaque); }
+.pace-display strong { font-size: 1.5em; color: var(--cor-destaque); }
+.grupo-tempo { display: flex; gap: 10px; align-items: center; }
+.grupo-tempo input { width: 100%; }
+.grupo-tempo span { color: var(--cor-texto-secundario); }
+
+/* ---- ESTILO DO SLIDER DE CANSAÇO ---- */
+.campo-outro-motivo { display: none; width: 100%; }
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: 5px; outline: none; padding: 0; cursor: pointer; background: var(--cor-primaria); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; background-color: var(--thumb-color, var(--cor-destaque)); margin-top: -7px; }
+input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; background-color: var(--thumb-color, var(--cor-destaque)); }
+/* MELHORIA: Acessibilidade do slider para navegação com teclado */
+input[type="range"]:focus-visible {
+    box-shadow: 0 0 0 3px var(--cor-fundo), 0 0 0 5px var(--cor-destaque);
+}
+
+/* ---- ESTILO DO MENU LATERAL E OVERLAY ---- */
+.botao-menu { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 5px; }
+.botao-menu span { display: block; width: 25px; height: 3px; background-color: var(--cor-texto); border-radius: 3px; }
+.menu-lateral { position: fixed; top: 0; left: 0; width: 280px; height: 100%; background-color: var(--cor-fundo-card); box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.2); transform: translateX(-100%); transition: transform 0.3s ease-in-out; z-index: 1000; }
+.menu-lateral.menu-aberto { transform: translateX(0); }
+.menu-header { padding: 20px; text-align: center; border-bottom: 1px solid var(--cor-primaria); }
+.menu-header h2 { margin: 0; color: var(--cor-destaque); }
+.menu-lateral ul { list-style-type: none; padding: 20px 0; margin: 0; }
+.menu-lateral ul li a { display: block; padding: 15px 20px; color: var(--cor-texto); text-decoration: none; font-size: 1.1em; transition: background-color 0.2s; }
+.menu-lateral ul li a:hover { background-color: var(--cor-primaria); }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s ease-in-out; z-index: 999; }
+.overlay.ativo { opacity: 1; pointer-events: all; }
+
+/* ---- ESTILO DA PÁGINA DE HISTÓRICO ---- */
+#lista-historico { display: flex; flex-direction: column; gap: 15px; }
+/* Bloco de código corrigido para o card de histórico */
+.card-treino {
+    background-color: var(--cor-fundo-card);
+    padding: 15px 20px;
+    padding-left: 50px; /* ADICIONADO: Espaço para os ícones */
+    border-radius: 12px;
+    border-left: 5px solid var(--cor-destaque);
+    position: relative;
+}
+.card-treino h3 {
+    margin: 0 0 10px 0;
+    color: var(--cor-texto);
+}
+.card-treino p {
+    margin: 5px 0;
+    color: var(--cor-texto-secundario);
+}
+.card-treino p strong {
+    color: var(--cor-texto);
+}
+
+
+.botao-excluir {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* ---- ESTILO DA PÁGINA DE RANKINGS E GRÁFICOS ---- */
+.card-ranking, .card-grafico { background-color: var(--cor-fundo-card); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+.card-ranking h2, .card-grafico h2 { margin-top: 0; color: var(--cor-destaque); font-size: 1.2em; border-bottom: 1px solid var(--cor-primaria); padding-bottom: 10px; }
+.card-grafico h2 { border-bottom: none; text-align: center; color: var(--cor-texto-secundario); }
+.card-ranking ol { list-style-type: none; padding-left: 0; counter-reset: ranking-counter; }
+.card-ranking ol li { counter-increment: ranking-counter; margin-bottom: 10px; padding: 10px; border-radius: 6px; background-color: var(--cor-fundo); display: flex; justify-content: space-between; align-items: center; }
+.card-ranking ol li::before { content: counter(ranking-counter) "."; font-weight: bold; font-size: 1.2em; color: var(--cor-destaque); margin-right: 15px; }
+.card-ranking .valor-ranking { font-weight: bold; font-size: 1.1em; }
+.card-ranking .data-ranking { font-size: 0.8em; color: var(--cor-texto-secundario); }
+
+/* ---- ESTILO DO TREINADOR INTERVALADO ---- */
+#treino-ativo { text-align: center; display: none; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 150px); }
+#status-ciclo { font-size: 2em; font-weight: bold; color: white; margin: 0; }
+#contador-ciclos { font-size: 1.2em; color: rgba(255,255,255,0.7); margin-bottom: 30px; }
+#tempo-display { font-size: 6em; font-weight: bold; font-family: 'Courier New', Courier, monospace; margin: 20px 0; color: white; }
+.bolinhas-progresso { display: flex; gap: 15px; margin-top: 40px; }
+.bolinhas-progresso .bolinha { width: 20px; height: 20px; border-radius: 50%; background-color: rgba(255,255,255,0.3); transition: background-color 0.5s; }
+.bolinhas-progresso .bolinha.concluida { background-color: white; }
+.grupo-checkbox { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+.grupo-checkbox input { width: auto; }
+.grupo-checkbox label { font-size: 1em; color: var(--cor-texto); }
+#botao-parar { display: block; margin-top: 30px; padding: 12px 25px; background-color: #dc3545; color: white; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; }
+
+/* ---- ESTILO DA PÁGINA DE DESAFIOS ---- */
+.card-desafio-novo {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+}
+#lista-desafios h2 { color: var(--cor-destaque); }
+.card-desafio {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.card-desafio h3 { margin: 0 0 15px 0; }
+.progresso-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: var(--cor-texto-secundario);
+}
+.progresso-barra-fundo {
+    width: 100%;
+    height: 20px;
+    background-color: var(--cor-primaria);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progresso-barra-preenchimento {
+    height: 100%;
+    width: 0%;
+    background-color: var(--cor-destaque);
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+.card-desafio .botao-excluir { top: 20px; right: 20px; }
+
+/* Estilo dos desafios na tela inicial */
+#progresso-desafios-home h2 {
+    color: var(--cor-destaque);
+    font-size: 1.2em;
+}
+.card-desafio-home {
+    background-color: var(--cor-fundo-card);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.card-desafio-home h3 { margin: 0 0 10px 0; font-size: 1em; }
+
+/* ---- ESTILO DA TELA DE CARREGAMENTO ---- */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-fundo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s;
+    pointer-events: all;
+}
+body:not(.loading) #loader-wrapper {
+    opacity: 0;
+    pointer-events: none;
+}
+.loader-spinner {
+    border: 4px solid var(--cor-primaria);
+    border-top: 4px solid var(--cor-destaque);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---- ESTILO DA PÁGINA DE EQUIPAMENTOS ---- */
+#lista-equipamentos h2 { color: var(--cor-destaque); }
+.card-equipamento {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.card-equipamento h3 { margin: 0 0 15px 0; }
+.equipamento-info {
+    font-size: 0.9em;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 8px;
+}
+
+/* ---- ESTILO DA SEÇÃO DE RECORDES PESSOAIS ---- */
+.card-recordes {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.card-recordes h2 {
+    margin-top: 0;
+    color: var(--cor-destaque);
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--cor-primaria);
+    padding-bottom: 10px;
+}
+.grid-recordes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+.card-recorde {
+    background-color: var(--cor-fundo);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+.card-recorde h4 { margin: 0 0 5px 0; font-size: 0.9em; color: var(--cor-texto-secundario); font-weight: normal; }
+.card-recorde p { margin: 0 0 8px 0; font-size: 1.5em; font-weight: bold; color: var(--cor-destaque); }
+.card-recorde span { font-size: 0.8em; color: var(--cor-texto-secundario); }
+
+/* ---- ESTILO DA PÁGINA PLANO DE TREINOS ---- */
+.calendario-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.calendario-header h2 { margin: 0; color: var(--cor-destaque); }
+.calendario-header button { background: none; border: none; color: var(--cor-destaque); font-size: 2em; cursor: pointer; }
+.calendario-dias-semana { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; margin-bottom: 10px; font-size: 0.9em; color: var(--cor-texto-secundario); }
+.grid-mensal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.dia-calendario {
+    position: relative;
+    background-color: var(--cor-fundo-card);
+    border-radius: 8px;
+    padding: 8px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+}
+.dia-calendario.hoje .dia-numero { background-color: var(--cor-destaque); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; }
+.dia-calendario.outro-mes { opacity: 0.4; }
+.dia-calendario .dia-numero { font-weight: bold; margin-bottom: 5px; }
+.descricao-treino-plano { flex-grow: 1; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 1.1em; padding: 5px; word-break: break-word; }
+.descricao-treino-plano.concluido { text-decoration: line-through; opacity: 0.6; }
+.acao-dia-principal { background: none; border: none; color: var(--cor-texto-secundario); font-size: 2em; cursor: pointer; width: 100%; margin-top: auto; }
+.acao-dia-principal.concluido { color: #28a745; }
+.botao-editar-dia { position: absolute; top: 5px; right: 5px; background: none; border: none; color: var(--cor-texto-secundario); font-size: 1.2em; cursor: pointer; opacity: 0.5; transition: opacity 0.2s; }
+.botao-editar-dia:hover { opacity: 1; }
+.dia-calendario.concluido { background-color: #274c3a; border: 1px solid #28a745; }
+.dia-calendario.nao-feito { background-color: #5b2c2c; border: 1px solid #dc3545; }
+.botao-excluir-modal { display: none; background-color: #a12c2c; color: white; margin-right: auto; }
+.botao-excluir-modal:hover { background-color: #dc3545; }
+
+/* ---- ESTILO DA PÁGINA DE CONQUISTAS ---- */
+#grid-conquistas { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; }
+.card-conquista {
+    background-color: var(--cor-fundo-card);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+.card-conquista.bloqueada { opacity: 0.4; }
+.card-conquista.desbloqueada { border-color: #ffd700; }
+.card-conquista .icone-conquista { font-size: 2.5em; }
+.card-conquista .nome-conquista { margin-top: 10px; font-size: 0.8em; font-weight: bold; }
+
+/* ---- ESTILO DO MODAL GLOBAL (UNIFICADO E CORRIGIDO) ---- */
+#global-modal { /* Mudado para o ID do seu HTML */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* display é controlado por JS, não precisa estar aqui */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--cor-texto); /* Usando variável */
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-buttons button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px; /* Padronizado */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.modal-buttons .btn-confirm {
+    background-color: var(--cor-destaque);
+    color: white;
+}
+.modal-buttons .btn-confirm:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.modal-buttons .btn-cancel {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+}
+.modal-buttons .btn-cancel:hover {
+    filter: brightness(1.2);
+}
+
+
+/* ---- RESPONSIVIDADE PARA TELAS MAIORES ---- */
+@media (min-width: 768px) {
+    body {
+        padding: 20px 40px;
+        padding-top: 100px;
+    }
+
+    /* Centraliza o conteúdo principal com uma largura máxima */
+    main,
+    .card-treino-hoje,
+    #lista-historico,
+    #grid-conquistas,
+    .calendario-container, /* Adicione um container ao redor do seu calendário no HTML se necessário */
+    .form-container { /* Adicione um container ao redor dos formulários */
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Melhora a grid de recordes */
+    .grid-recordes {
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas em telas maiores */
+    }
+
+    /* Melhora a grid de conquistas */
+    #grid-conquistas {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+/* ---- NOVO ESTILO PARA BOTÃO DE AÇÃO PADRÃO ---- */
+.botao-acao {
+    display: inline-block; /* Para não ocupar a largura toda */
+    background-color: var(--cor-destaque);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.botao-acao:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+/* NOVO Estilo para o botão de 'voltar' no header */
+.link-voltar {
+    /* Posicionamento */
+    position: absolute;
+    left: 15px; /* Um pouco mais perto da borda */
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* Aparência do botão */
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
+    color: var(--cor-texto);
+    padding: 8px 12px;
+    border-radius: 20px; /* Bordas bem arredondadas */
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espaço entre o ícone e o texto */
+
+    /* Efeito suave ao interagir */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.link-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.05); /* Efeito de leve crescimento */
+}
+/* --- CÓDIGO DE CORREÇÃO PARA TODOS OS MODAIS --- */
+
+/* Este é o fundo escuro que cobre a tela inteira */
+.modal-overlay {
+    /* A "COLA MÁGICA" para flutuar sobre a página */
+    position: fixed; 
+
+    /* Ocupa a tela inteira */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semitransparente */
+
+    /* Comandos para centralizar a caixa branca no meio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Garante que ele fique na frente de tudo */
+    z-index: 2000; 
+
+    /* Por padrão, ele fica invisível (o JS o torna visível) */
+    /* O seu JS já controla isso, mas vamos garantir */
+    display: none;
+}
+
+/* Esta é a caixa branca do pop-up (conteúdo) */
+.modal-box, .modal-content {
+    background-color: var(--cor-fundo-card);
+    color: var(--cor-texto);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
+}
+/* Cole esta versão corrigida no lugar da sua */
+.conquistas-no-card {
+    position: absolute;
+    top: 50%;
+    left: 15px; /* Posição dentro do novo padding */
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    font-size: 1.5em; /* Um pouco maior para destaque */
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Ícones um embaixo do outro */
+    gap: 5px; /* Espaço entre os ícones */
+}
+/* Estilo para o rodapé do card de treino (onde fica o botão) */
+.footer-card-treino {
+    border-top: 1px solid var(--cor-primaria);
+    margin-top: 15px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+/* Estilo para o novo botão de conquistas no card */
+.botao-conquistas-card {
+    background-color: transparent;
+    color: var(--cor-destaque);
+    border: 1px solid var(--cor-destaque);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.botao-conquistas-card:hover {
+    background-color: var(--cor-destaque);
+    color: white;
+}
+
+/* Estilo para a lista de conquistas dentro do novo modal */
+.lista-conquistas-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.item-conquista-modal {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-fundo);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.item-conquista-modal:hover {
+    transform: scale(1.03);
+}
+
+.item-conquista-modal .icone-conquista {
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+.item-conquista-modal .nome-conquista {
+    font-weight: bold;
+}
+/* --- CORREÇÃO DE EMPILHAMENTO DE MODAIS --- */
+/* Garante que o modal de alerta global sempre fique na frente de outros modais */
+#global-modal {
+    z-index: 2001;
+}

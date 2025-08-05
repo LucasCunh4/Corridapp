@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0F3460">
+
+    <title>Criar Novo Desafio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body class="loading">
+
+    <header>
+        <a href="desafios.html" class="link-voltar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+    </svg>
+    Voltar
+</a>
+
+        <h1>Novo Desafio</h1>
+    </header>
+
+    <main>
+        <section class="card-desafio-novo">
+            <form id="form-criar-desafio">
+                <label for="desafio-titulo">Nome do Desafio:</label>
+                <input type="text" id="desafio-titulo" placeholder="Ex: Correr 100km em Agosto" required>
+
+                <label for="desafio-tipo">Tipo de Meta:</label>
+                <select id="desafio-tipo">
+                    <option value="distancia">Distância Total (km)</option>
+                    <option value="quantidade">Quantidade de Treinos</option>
+                </select>
+
+                <label for="desafio-meta">Meta Numérica:</label>
+                <input type="number" id="desafio-meta" placeholder="Ex: 100" required inputmode="numeric">
+
+                <label for="desafio-duracao">Duração do Desafio:</label>
+                <select id="desafio-duracao">
+                    <option value="1-semana">1 Semana</option>
+                    <option value="1-mes">1 Mês</option>
+                    <option value="1-ano">1 Ano</option>
+                </select>
+
+                <div class="grupo-checkbox">
+                    <input type="checkbox" id="data-personalizada-check">
+                    <label for="data-personalizada-check">Usar data final personalizada</label>
+                </div>
+                <input type="date" id="desafio-data-fim" style="display: none;">
+
+                <button type="submit">Criar Desafio</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

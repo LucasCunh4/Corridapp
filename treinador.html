@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Meu App de Corrida</title> 
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+</head>
+
+<body class="loading">
+  <div id="loader-wrapper"><div class="loader-spinner"></div></div>
+
+    <header>
+        <button id="botao-menu" class="botao-menu"><span></span><span></span><span></span></button>
+        <h1>Treinador Intervalado</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li> 
+            <li><a href="plano.html">Plano de Treinos</a></li>
+        </ul>
+        
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <main>
+        <section id="configuracao">
+            <h2>Configure seu Treino</h2>
+            <form>
+                <label for="tempo-corrida-min">Tempo de Corrida Forte:</label>
+                <div class="grupo-tempo">
+                    <input type="number" id="tempo-corrida-min" placeholder="min" min="0"><span>min</span>
+                    <input type="number" id="tempo-corrida-seg" placeholder="seg" min="0" max="59"><span>seg</span>
+                </div>
+
+                <label for="tempo-caminhada-min">Tempo de Corrida Leve/Caminhada:</label>
+                <div class="grupo-tempo">
+                    <input type="number" id="tempo-caminhada-min" placeholder="min" min="0"><span>min</span>
+                    <input type="number" id="tempo-caminhada-seg" placeholder="seg" min="0" max="59"><span>seg</span>
+                </div>
+                
+                <div id="grupo-ciclos">
+                    <label for="ciclos">Número de Ciclos:</label>
+                    <input type="number" id="ciclos" value="5" min="1">
+                </div>
+                
+                <div class="grupo-checkbox">
+                    <input type="checkbox" id="ciclos-infinitos">
+                    <label for="ciclos-infinitos">Ciclos Contínuos (sem limite)</label>
+                </div>
+
+                <button type="button" id="iniciar-treino">Começar!</button>
+            </form>
+        </section>
+
+        <section id="treino-ativo">
+            <h2 id="status-ciclo">Corrida Forte</h2> <p id="contador-ciclos">1 / 5</p>
+            <div class="cronometro"><p id="tempo-display">01:30</p></div>
+            <div class="bolinhas-progresso"></div>
+            <button type="button" id="botao-parar">Parar Treino</button>
+        </section>
+    </main>
+
+<div id="modal-confirmacao" class="modal-overlay">
+    <div class="modal-content">
+        <p id="modal-texto">Tem certeza que deseja parar?</p>
+        <div class="modal-buttons">
+            <button id="modal-botao-cancelar" class="btn-cancel">Cancelar</button>
+            <button id="modal-botao-confirmar" class="btn-confirm">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

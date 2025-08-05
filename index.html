@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu App de Corrida</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body class="loading">
+
+    <div id="loader-wrapper">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <header>
+        <button id="botao-menu" class="botao-menu"><span></span><span></span><span></span></button>
+        <h1>Resumo</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+            <li><a href="plano.html">Plano de Treinos</a></li>
+        </ul>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <section id="treino-do-dia" class="card-treino-hoje">
+        <h3>TREINO DE HOJE</h3>
+        <p>Carregando...</p>
+        <a href="plano.html" class="botao-ir-plano">Ver meu plano ➔</a>
+    </section>
+
+
+    <main>
+        <section class="card-resumo-km">
+            <h2>Quilometragem</h2>
+            <div id="seletor-periodo" class="botoes-periodo">
+                <button data-periodo="semanal">Semanal</button>
+                <button data-periodo="mensal">Mensal</button>
+                <button data-periodo="total" class="ativo">Total</button>
+            </div>
+            <p class="km-total-display">0.00 km</p>
+        </section>
+
+        <section id="progresso-desafios-home" class="card-desafios">
+    <h2>Desafios em Andamento</h2>
+</section>
+
+        <section class="card-ultima-corrida">
+            <h2>Última Corrida</h2>
+            <p>Tipo: N/A</p>
+            <p>Distância: 0 km</p>
+            <p>Tempo: 0 min 0 seg</p>
+            <p>Pace Médio: 0'00" /km</p>
+        </section>
+    </main>
+
+    <a href="registrar-treino.html" class="fab">+</a>
+
+    <script src="script.js"></script>
+<!-- Adicione este código ao final do seu arquivo HTML, antes de fechar o <body> -->
+<div id="global-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <p id="global-modal-text"></p>
+        <div id="global-modal-confirm-buttons" class="modal-buttons" style="display: none;">
+            <button id="global-modal-btn-confirm" class="btn-confirm">Confirmar</button>
+            <button id="global-modal-btn-cancel" class="btn-cancel">Cancelar</button>
+        </div>
+        <div id="global-modal-alert-buttons" class="modal-buttons" style="display: none;">
+            <button id="global-modal-btn-ok" class="btn-confirm">OK</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

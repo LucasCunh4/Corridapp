@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Meu App de Corrida</title> 
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F3460">
+    
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+
+<body class="loading">
+
+    <header>
+        <button id="botao-menu" class="botao-menu">
+            <span></span><span></span><span></span>
+        </button>
+        <h1>Gráficos</h1>
+    </header>
+
+    <nav class="menu-lateral">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+            <li><a href="graficos.html">Gráficos</a></li>
+            <li><a href="conquistas.html">Conquistas</a></li>
+            <li><a href="desafios.html">Desafios</a></li>
+            <li><a href="treinador.html">Treinador Intervalado</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li> 
+            <li><a href="plano.html">Plano de Treinos</a></li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <main>
+        <div class="card-grafico">
+            <h2>Evolução da Distância (km)</h2>
+            <canvas id="graficoDistancia"></canvas>
+        </div>
+
+        <div class="card-grafico">
+            <h2>Evolução do Pace (min/km)</h2>
+            <canvas id="graficoPace"></canvas>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
