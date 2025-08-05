@@ -1,9 +1,18 @@
 // SUBSTITUA SEU CÓDIGO DE REGISTRO POR ESTE
 if ('serviceWorker' in navigator) {
+    // Constrói o caminho absoluto para o sw.js
+    const swUrl = `${window.location.origin}${window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'))}/sw.js`;
+
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js') // MUDANÇA AQUI
-            .then(registration => { console.log('SW registrado com sucesso:', registration); })
-            .catch(registrationError => { console.log('Falha no registro do SW:', registrationError); });
+        navigator.serviceWorker.register(swUrl)
+            .then(registration => {
+                console.log('SW registrado com sucesso no caminho:', swUrl);
+                console.log('Escopo do SW:', registration.scope);
+            })
+            .catch(registrationError => {
+                console.error('Falha no registro do SW:', registrationError);
+                console.error('URL do SW que falhou:', swUrl);
+            });
     });
 }
 
